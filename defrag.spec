@@ -15,6 +15,11 @@ The programs in this package will reorganise data on minix, ext, ext2
 and xia file system partitions in order to improve the file system's
 performance.
 
+%description -l pl
+Programy do defragmentacji systemu plików Linuksa.
+Zawarte w tym pakiecie programy maj± za zadanie reorganizacjê danych na
+partycjach minix, ext, ext2 i xia tak, by zwiêkszyæ efektywno¶æ systemu.
+
 %prep
 %setup -q
 %patch0 -p1
