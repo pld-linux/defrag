@@ -7,7 +7,7 @@ Group:		Utilities/System
 Source:		ftp://sunsite.unc.edu/pub/Linux/system/filesystems/%{name}-%{version}.tar.gz
 Patch0:		defrag-0.73-glibc.patch
 Patch1:		defrag-makefile.patch
-BuildRoot:	/tmp/%{name}-%{version}-root
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 Linux filesystem defragmenters.
