@@ -10,6 +10,7 @@ Release:	2
 License:	GPL
 Group:		Applications/System
 Source0:	ftp://sunsite.unc.edu/pub/Linux/system/filesystems/%{name}-%{version}.tar.gz
+# Source0-md5:	d007c46b3cbd7de495deb45a50836d18
 Patch0:		%{name}-0.73-glibc.patch
 Patch1:		%{name}-makefile.patch
 Patch2:		%{name}-kernel-2.4.patch
