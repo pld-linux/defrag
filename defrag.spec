@@ -32,14 +32,14 @@ minix, ext, ext2 i xia tak, by zwiêkszyæ efektywno¶æ systemu.
 %patch3 -p1
 
 %build
-%{?!bcond_off_static:%{__make} OPTI="%{rpmcflags}" LDFLAGS="%{rpmldflags}}
-%{?bcond_off_static:%{__make} OPTI="%{rpmcflags}" LDFLAGS="%{rpmldflags} e2defrag defrag e2dump frag}
+%{?!_without_static:%{__make} OPTI="%{rpmcflags}" LDFLAGS="%{rpmldflags}}
+%{?_without_static:%{__make} OPTI="%{rpmcflags}" LDFLAGS="%{rpmldflags} e2defrag defrag e2dump frag}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{/sbin,%{_mandir}/man8}
 
-%{__make} %{?!bcond_off_static:install}%{?bcond_off_static:install_shared} \
+%{__make} %{?!_without_static:install}%{?_without_static:install_shared} \
 	DESTDIR=$RPM_BUILD_ROOT
 
 gzip -9nf BUGS ChangeLog NEWS README
