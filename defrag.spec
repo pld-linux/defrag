@@ -32,8 +32,8 @@ minix, ext, ext2 i xia tak, by zwiêkszyæ efektywno¶æ systemu.
 %patch3 -p1
 
 %build
-%{?!_without_static:%{__make} OPTI="%{rpmcflags}" LDFLAGS="%{rpmldflags}}
-%{?_without_static:%{__make} OPTI="%{rpmcflags}" LDFLAGS="%{rpmldflags} e2defrag defrag e2dump frag}
+%{?!_without_static:%{__make} OPTI="%{rpmcflags}" LDFLAGS="%{rpmldflags}"}
+%{?_without_static:%{__make} OPTI="%{rpmcflags}" LDFLAGS="%{rpmldflags}" e2defrag defrag e2dump frag}
 
 %install
 rm -rf $RPM_BUILD_ROOT
