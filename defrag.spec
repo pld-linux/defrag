@@ -40,14 +40,12 @@ install -d $RPM_BUILD_ROOT{/sbin,%{_mandir}/man8}
 %{__make} %{?!_without_static:install}%{?_without_static:install_shared} \
 	DESTDIR=$RPM_BUILD_ROOT
 
-gzip -9nf BUGS ChangeLog NEWS README
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc {BUGS,ChangeLog,NEWS,README}.gz
+%doc BUGS ChangeLog NEWS README
 %attr(750,root,root) /sbin/e2defrag*
 %attr(750,root,root) /sbin/defrag
 %attr(750,root,root) /sbin/e2dump
