@@ -1,3 +1,7 @@
+#
+# Conditional build:
+# _without_static
+#
 Summary:	Linux filesystem defragmenter
 Summary(pl):	Narzêdzia do defragmentacji linuksowych systemów plików
 Name:		defrag
@@ -30,8 +34,8 @@ minix, ext, ext2 i xia tak, by zwiêkszyæ efektywno¶æ systemu.
 %patch3 -p1
 
 %build
-%{?!_without_static:%{__make} OPTI="%{rpmcflags}" LDFLAGS="%{rpmldflags}"}
-%{?_without_static:%{__make} OPTI="%{rpmcflags}" LDFLAGS="%{rpmldflags}" e2defrag defrag e2dump frag}
+%{?!_without_static:%{__make} OPTI="%{rpmcflags}" LDFLAGS="%{rpmldflags}" CC="%{__cc}"}
+%{?_without_static:%{__make} OPTI="%{rpmcflags}" LDFLAGS="%{rpmldflags}" CC="%{__cc}" e2defrag defrag e2dump frag}
 
 %install
 rm -rf $RPM_BUILD_ROOT
