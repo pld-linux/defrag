@@ -26,7 +26,8 @@ minix, ext, ext2 i xia tak, by zwiêkszyæ efektywno¶æ systemu.
 %patch1 -p1
 
 %build
-%{__make} OPTI="$RPM_OPT_FLAGS" LDFLAGS=-s
+%{?!bcond_static_off:%{__make} OPTI="$RPM_OPT_FLAGS" LDFLAGS=-s}
+%{?bcond_static_off:%{__make} OPTI="$RPM_OPT_FLAGS" LDFLAGS=-s e2defrag defrag e2dump frag}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -42,8 +43,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc {BUGS,ChangeLog,NEWS,README}.gz
-%attr(750,root,root) /sbin/e2defrag
-%attr(750,root,root) /sbin/e2defrag.static
+%attr(750,root,root) /sbin/e2defrag*
 %attr(750,root,root) /sbin/defrag
 %attr(750,root,root) /sbin/e2dump
 %attr(750,root,root) /sbin/frag
