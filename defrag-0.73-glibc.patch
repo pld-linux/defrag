@@ -1,0 +1,11 @@
+diff -ur defrag-0.73/misc.c defrag-0.73.glibc/misc.c
+--- defrag-0.73/misc.c	Sun Aug 17 16:02:33 1997
++++ defrag-0.73.glibc/misc.c	Wed Jan 28 00:05:05 1998
+@@ -10,6 +10,7 @@
+  */
+ 
+ #include <stdlib.h>
++#include <errno.h>
+ #include <stdio.h>
+ #include <unistd.h>
+ #include <mntent.h>

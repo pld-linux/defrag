@@ -1,0 +1,30 @@
+diff -ur defrag-0.73.orig/Makefile defrag-0.73/Makefile
+--- defrag-0.73.orig/Makefile	Sun Jan 25 14:57:35 1998
++++ defrag-0.73/Makefile	Mon Jan  3 19:37:13 2000
+@@ -9,7 +9,7 @@
+ VERSION = 0.73
+ 
+ BINDIR = $(DESTDIR)/sbin
+-MANDIR = $(DESTDIR)/usr/man
++MANDIR = $(DESTDIR)/usr/share/man
+ 
+ CC = gcc -pipe
+ RANLIB = ranlib
+@@ -29,7 +29,7 @@
+ CFLAGS = -Wall -g $(CPU) $(OPTI) $(DFLAGS)
+ LDFLAGS = -g
+ else
+-CFLAGS = -Wall -fomit-frame-pointer $(CPU) $(OPTI) $(DFLAGS)
++CFLAGS = -Wall -fomit-frame-pointer -I/usr/include/ncurses $(CPU) $(OPTI) $(DFLAGS)
+ LDFLAGS = -s
+ endif
+ LIBS= -lncurses
+@@ -37,7 +37,7 @@
+ # Comment this out if you don't want QMAGIC executables.
+ #LDFLAGS:=$(LDFLAGS) -Xlinker -qmagic
+ 
+-PROGS = e2defrag e2defrag.static defrag edefrag xdefrag e2dump xdump frag
++PROGS = e2defrag e2defrag.static defrag e2dump frag
+ MAN = defrag.8 frag.8
+ OBJS = defrag.o buffers.o display.o misc.o llseek.o
+ 
