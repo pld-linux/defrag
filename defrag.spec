@@ -2,23 +2,23 @@ Summary:	Linux filesystem defragmenter
 Name:		defrag
 Version:	0.73
 Release:	1
-Copyright:	GPL
+License:	GPL
 Group:		Utilities/System
-Source:		ftp://sunsite.unc.edu/pub/Linux/system/filesystems/%{name}-%{version}.tar.gz
+Group(pl):	Narzêdzia/System
+Source0:	ftp://sunsite.unc.edu/pub/Linux/system/filesystems/%{name}-%{version}.tar.gz
 Patch0:		defrag-0.73-glibc.patch
 Patch1:		defrag-makefile.patch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-Linux filesystem defragmenters.
-The programs in this package will reorganise data on minix, ext, ext2
-and xia file system partitions in order to improve the file system's
-performance.
+Linux filesystem defragmenters. The programs in this package will
+reorganise data on minix, ext, ext2 and xia file system partitions in
+order to improve the file system's performance.
 
 %description -l pl
-Programy do defragmentacji systemu plików Linuksa.
-Zawarte w tym pakiecie programy maj± za zadanie reorganizacjê danych na
-partycjach minix, ext, ext2 i xia tak, by zwiêkszyæ efektywno¶æ systemu.
+Programy do defragmentacji systemu plików Linuksa. Zawarte w tym
+pakiecie programy maj± za zadanie reorganizacjê danych na partycjach
+minix, ext, ext2 i xia tak, by zwiêkszyæ efektywno¶æ systemu.
 
 %prep
 %setup -q
@@ -40,7 +40,7 @@ gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man8/* \
 rm -rf $RPM_BUILD_ROOT
 
 %files
-%defattr (644,root,root,755)
+%defattr(644,root,root,755)
 %doc {BUGS,ChangeLog,NEWS,README}.gz
 %attr(750,root,root) /sbin/e2defrag
 %attr(750,root,root) /sbin/e2defrag.static
