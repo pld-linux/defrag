@@ -5,8 +5,6 @@ Version:	0.73
 Release:	2
 License:	GPL
 Group:		Applications/System
-Group(de):	Applikationen/System
-Group(pl):	Aplikacje/System
 Source0:	ftp://sunsite.unc.edu/pub/Linux/system/filesystems/%{name}-%{version}.tar.gz
 Patch0:		%{name}-0.73-glibc.patch
 Patch1:		%{name}-makefile.patch
