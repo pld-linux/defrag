@@ -1,15 +1,17 @@
 Summary:	Linux filesystem defragmenter
+Summary(pl):	Narzêdzia do defragmentacji linuksowych systemów plików
 Name:		defrag
 Version:	0.73
 Release:	2
 License:	GPL
-Group:		Utilities/System
-Group(pl):	Narzêdzia/System
+Group:		Applications/System
+Group(de):	Applikationen/System
+Group(pl):	Aplikacje/System
 Source0:	ftp://sunsite.unc.edu/pub/Linux/system/filesystems/%{name}-%{version}.tar.gz
-Patch0:		defrag-0.73-glibc.patch
-Patch1:		defrag-makefile.patch
-Patch2:		defrag-kernel-2.4.patch
-Patch3:		defrag-shared.patch
+Patch0:		%{name}-0.73-glibc.patch
+Patch1:		%{name}-makefile.patch
+Patch2:		%{name}-kernel-2.4.patch
+Patch3:		%{name}-shared.patch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -30,8 +32,8 @@ minix, ext, ext2 i xia tak, by zwiêkszyæ efektywno¶æ systemu.
 %patch3 -p1
 
 %build
-%{?!bcond_off_static:%{__make} OPTI="$RPM_OPT_FLAGS" LDFLAGS=-s}
-%{?bcond_off_static:%{__make} OPTI="$RPM_OPT_FLAGS" LDFLAGS=-s e2defrag defrag e2dump frag}
+%{?!bcond_off_static:%{__make} OPTI="%{rpmcflags}" LDFLAGS="%{rpmldflags}}
+%{?bcond_off_static:%{__make} OPTI="%{rpmcflags}" LDFLAGS="%{rpmldflags} e2defrag defrag e2dump frag}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -40,8 +42,7 @@ install -d $RPM_BUILD_ROOT{/sbin,%{_mandir}/man8}
 %{__make} %{?!bcond_off_static:install}%{?bcond_off_static:install_shared} \
 	DESTDIR=$RPM_BUILD_ROOT
 
-gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man8/* \
-	BUGS ChangeLog NEWS README
+gzip -9nf BUGS ChangeLog NEWS README
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -53,4 +54,4 @@ rm -rf $RPM_BUILD_ROOT
 %attr(750,root,root) /sbin/defrag
 %attr(750,root,root) /sbin/e2dump
 %attr(750,root,root) /sbin/frag
-%{_mandir}/man8/*.gz
+%{_mandir}/man8/*
