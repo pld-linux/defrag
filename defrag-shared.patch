@@ -1,0 +1,21 @@
+--- defrag-0.73/Makefile~	Tue Dec 26 02:03:21 2000
++++ defrag-0.73/Makefile	Tue Dec 26 02:05:48 2000
+@@ -38,6 +38,7 @@
+ #LDFLAGS:=$(LDFLAGS) -Xlinker -qmagic
+ 
+ PROGS = e2defrag e2defrag.static defrag e2dump frag
++SPROGS = e2defrag defrag e2dump frag
+ MAN = defrag.8 frag.8
+ OBJS = defrag.o buffers.o display.o misc.o llseek.o
+ 
+@@ -86,6 +87,10 @@
+ 
+ install: all
+ 	install $(PROGS) $(BINDIR)
++	install -m644 $(MAN) $(MANDIR)/man8
++
++install_shared: $(SPROGS)
++	install $(SPROGS) $(BINDIR)
+ 	install -m644 $(MAN) $(MANDIR)/man8
+ 
+ 
