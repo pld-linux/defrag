@@ -1,0 +1,22 @@
+--- defrag-0.73/e2dump.c~	Tue Aug 12 21:32:05 1997
++++ defrag-0.73/e2dump.c	Tue Dec 26 02:01:27 2000
+@@ -22,6 +22,7 @@
+ #include <fcntl.h>
+ #include <time.h>
+ #include <linux/ext2_fs.h>
++#include <linux/version.h>
+ #include "types.h"
+ #include "ext2.h"
+ #include "display.h"
+@@ -444,7 +444,11 @@
+                              /* in 512 byte blocks for some unknown reason */
+    printf("512-Blocks count: %lu\n", (unsigned long) n.i_blocks); 
+    if (n.i_flags !=0) printf ("Flags 0x%lX\n", (unsigned long) n.i_flags);
++#if LINUX_VERSION_CODE > KERNEL_VERSION(2,3,0)
++   printf("Version: %lu\n", (unsigned long) n.i_generation);
++#else
+    printf("Version: %lu\n", (unsigned long) n.i_version);
++#endif
+    
+    if (n.i_file_acl!=0 || n.i_dir_acl!=0) {    
+       printf("File ACL: %lu  ", (unsigned long) n.i_file_acl);
