@@ -1,13 +1,15 @@
 Summary:	Linux filesystem defragmenter
 Name:		defrag
 Version:	0.73
-Release:	1
+Release:	2
 License:	GPL
 Group:		Utilities/System
 Group(pl):	Narzêdzia/System
 Source0:	ftp://sunsite.unc.edu/pub/Linux/system/filesystems/%{name}-%{version}.tar.gz
 Patch0:		defrag-0.73-glibc.patch
 Patch1:		defrag-makefile.patch
+Patch2:		defrag-kernel-2.4.patch
+Patch3:		defrag-shared.patch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -24,15 +26,19 @@ minix, ext, ext2 i xia tak, by zwiêkszyæ efektywno¶æ systemu.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
+%patch3 -p1
 
 %build
-%{?!bcond_static_off:%{__make} OPTI="$RPM_OPT_FLAGS" LDFLAGS=-s}
-%{?bcond_static_off:%{__make} OPTI="$RPM_OPT_FLAGS" LDFLAGS=-s e2defrag defrag e2dump frag}
+%{?!bcond_off_static:%{__make} OPTI="$RPM_OPT_FLAGS" LDFLAGS=-s}
+%{?bcond_off_static:%{__make} OPTI="$RPM_OPT_FLAGS" LDFLAGS=-s e2defrag defrag e2dump frag}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{/sbin,%{_mandir}/man8}
-%{__make} install DESTDIR=$RPM_BUILD_ROOT
+
+%{__make} %{?!bcond_off_static:install}%{?bcond_off_static:install_shared} \
+	DESTDIR=$RPM_BUILD_ROOT
 
 gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man8/* \
 	BUGS ChangeLog NEWS README
