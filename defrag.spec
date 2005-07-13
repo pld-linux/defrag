@@ -1,6 +1,6 @@
 #
 # Conditional build:
-# _without_static
+%bcond_without static		# don't build static
 #
 Summary:	Linux filesystem defragmenter
 Summary(pl):	Narzêdzia do defragmentacji linuksowych systemów plików
@@ -35,14 +35,14 @@ minix, ext, ext2 i xia tak, by zwiêkszyæ efektywno¶æ systemu.
 %patch3 -p1
 
 %build
-%{?!_without_static:%{__make} OPTI="%{rpmcflags}" LDFLAGS="%{rpmldflags}" CC="%{__cc}"}
-%{?_without_static:%{__make} OPTI="%{rpmcflags}" LDFLAGS="%{rpmldflags}" CC="%{__cc}" e2defrag defrag e2dump frag}
+%{?with_static:%{__make} OPTI="%{rpmcflags}" LDFLAGS="%{rpmldflags}" CC="%{__cc}"}
+%{!?with_static:%{__make} OPTI="%{rpmcflags}" LDFLAGS="%{rpmldflags}" CC="%{__cc}" e2defrag defrag e2dump frag}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{/sbin,%{_mandir}/man8}
 
-%{__make} %{?!_without_static:install}%{?_without_static:install_shared} \
+%{__make} %{?with_static:install}%{!?with_static:install_shared} \
 	DESTDIR=$RPM_BUILD_ROOT
 
 %clean
