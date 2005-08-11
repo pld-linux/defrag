@@ -1,6 +1,6 @@
 #
 # Conditional build:
-%bcond_without static		# don't build static
+%bcond_without	static		# don't build static
 #
 Summary:	Linux filesystem defragmenter
 Summary(pl):	Narzêdzia do defragmentacji linuksowych systemów plików
