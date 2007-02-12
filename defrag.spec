@@ -3,7 +3,7 @@
 %bcond_without	static		# don't build static
 #
 Summary:	Linux filesystem defragmenter
-Summary(pl):	Narzêdzia do defragmentacji linuksowych systemów plików
+Summary(pl.UTF-8):   NarzÄ™dzia do defragmentacji linuksowych systemÃ³w plikÃ³w
 Name:		defrag
 Version:	0.73
 Release:	2
@@ -22,10 +22,10 @@ Linux filesystem defragmenters. The programs in this package will
 reorganise data on minix, ext, ext2 and xia file system partitions in
 order to improve the file system's performance.
 
-%description -l pl
-Programy do defragmentacji systemu plików Linuksa. Zawarte w tym
-pakiecie programy maj± za zadanie reorganizacjê danych na partycjach
-minix, ext, ext2 i xia tak, by zwiêkszyæ efektywno¶æ systemu.
+%description -l pl.UTF-8
+Programy do defragmentacji systemu plikÃ³w Linuksa. Zawarte w tym
+pakiecie programy majÄ… za zadanie reorganizacjÄ™ danych na partycjach
+minix, ext, ext2 i xia tak, by zwiÄ™kszyÄ‡ efektywnoÅ›Ä‡ systemu.
 
 %prep
 %setup -q
