@@ -3,7 +3,7 @@
 %bcond_without	static		# don't build static
 #
 Summary:	Linux filesystem defragmenter
-Summary(pl.UTF-8):   Narzędzia do defragmentacji linuksowych systemów plików
+Summary(pl.UTF-8):	Narzędzia do defragmentacji linuksowych systemów plików
 Name:		defrag
 Version:	0.73
 Release:	2
